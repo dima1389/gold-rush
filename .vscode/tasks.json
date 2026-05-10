@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Java: Compile Gold Rush",
+            "type": "shell",
+            "command": "javac -d out src/*.java",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Java: Run Gold Rush",
+            "type": "shell",
+            "dependsOn": "Java: Compile Gold Rush",
+            "command": "java -cp out Play",
+            "problemMatcher": []
+        }
+    ]
+}
