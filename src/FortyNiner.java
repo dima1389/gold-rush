@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 public class FortyNiner {
@@ -46,5 +47,21 @@ public class FortyNiner {
         if (rnd != null) {
             this.rnd = rnd;
         }
+    }
+
+    public int useTools() {
+        int weeklyIncome = 0;
+        Iterator<Tool> iterator = tools.iterator();
+        while (iterator.hasNext()) {
+            Tool tool = iterator.next();
+            weeklyIncome += tool.useTool();
+            if (tool instanceof Cradle && tool.getDurability() == 0) {
+                iterator.remove();
+            }
+        }
+
+        money += weeklyIncome;
+        System.out.printf("Weekly earnings total: $%d. You now have $%d.%n", weeklyIncome, money);
+        return weeklyIncome;
     }
 }
