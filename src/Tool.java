@@ -13,6 +13,14 @@ public abstract class Tool {
         return durability;
     }
 
+    protected void setDurability(int durability) {
+        this.durability = durability;
+    }
+
+    public Random getRnd() {
+        return rnd;
+    }
+
     protected int randomBetween(int min, int max) {
         return rnd.nextInt(max - min + 1) + min;
     }
