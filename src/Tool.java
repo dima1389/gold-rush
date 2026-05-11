@@ -8,4 +8,10 @@ public abstract class Tool {
         this.durability = durability;
         this.rnd = new Random();
     }
+
+    public int getDurability() {
+        return durability;
+    }
+
+    public abstract int useTool();
 }
