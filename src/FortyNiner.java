@@ -71,4 +71,15 @@ public class FortyNiner {
         System.out.printf("You bought food for $%d. Money left: $%d.%n", foodCost, money);
         return foodCost;
     }
+
+    public int loseEndurance() {
+        if (endurance == 0) {
+            System.out.println("Your endurance is still 0%.");
+            return 0;
+        }
+        int enduranceLoss = rnd.nextInt(16) + 10;
+        endurance = Math.max(0, endurance - enduranceLoss);
+        System.out.printf("You lost %d%% endurance. Current endurance: %d%%%n", enduranceLoss, endurance);
+        return enduranceLoss;
+    }
 }
