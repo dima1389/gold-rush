@@ -5,7 +5,7 @@ public abstract class Tool {
     private Random rnd;
 
     protected Tool(int durability) {
-        this.durability = durability;
+        this.durability = normalizeDurability(durability);
         this.rnd = new Random();
     }
 
@@ -14,7 +14,7 @@ public abstract class Tool {
     }
 
     protected void setDurability(int durability) {
-        this.durability = durability;
+        this.durability = normalizeDurability(durability);
     }
 
     public Random getRnd() {
@@ -23,6 +23,16 @@ public abstract class Tool {
 
     protected int randomBetween(int min, int max) {
         return rnd.nextInt(max - min + 1) + min;
+    }
+
+    private int normalizeDurability(int value) {
+        if (value < 0) {
+            return 0;
+        }
+        if (value > 100) {
+            return 100;
+        }
+        return value;
     }
 
     public abstract int useTool();
