@@ -64,4 +64,11 @@ public class FortyNiner {
         System.out.printf("Weekly earnings total: $%d. You now have $%d.%n", weeklyIncome, money);
         return weeklyIncome;
     }
+
+    public int buyFood() {
+        int foodCost = rnd.nextInt(21) + 30;
+        money -= foodCost;
+        System.out.printf("You bought food for $%d. Money left: $%d.%n", foodCost, money);
+        return foodCost;
+    }
 }
