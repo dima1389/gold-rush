@@ -13,5 +13,9 @@ public abstract class Tool {
         return durability;
     }
 
+    protected int randomBetween(int min, int max) {
+        return rnd.nextInt(max - min + 1) + min;
+    }
+
     public abstract int useTool();
 }
