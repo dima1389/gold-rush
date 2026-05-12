@@ -125,6 +125,40 @@ public class FortyNiner {
         }
     }
 
+    public void buyCradles(Scanner scanner) {
+        int workingCradles = countWorkingCradles();
+        int maxAffordable = Math.max(0, money / 30);
+        if (maxAffordable == 0) {
+            System.out.printf(
+                "You own %d working cradle(s), but cannot afford a new one this week.%n",
+                workingCradles
+            );
+            return;
+        }
+
+        System.out.printf("You own %d working cradle(s).%n", workingCradles);
+        System.out.printf(
+            "How many cradles do you want to buy? (0-%d, $30 each)%n",
+            maxAffordable
+        );
+        int count = readNumberInRange(scanner, 0, maxAffordable);
+        if (count == 0) {
+            System.out.println("You decided not to buy any cradles this week.");
+            return;
+        }
+
+        for (int i = 0; i < count; i++) {
+            tools.add(new Cradle());
+        }
+        money -= count * 30;
+        System.out.printf(
+            "You bought %d cradle(s). You now have %d working cradle(s). Money left: $%d.%n",
+            count,
+            countWorkingCradles(),
+            money
+        );
+    }
+
     private boolean goToSaloon() {
         int cost = rnd.nextInt(151) + 50;
         int recoveredEndurance = rnd.nextInt(46) + 5;
@@ -134,8 +168,8 @@ public class FortyNiner {
         }
 
         money -= cost;
-                endurance = Math.min(100, endurance + recoveredEndurance);
-                System.out.printf(
+        endurance = Math.min(100, endurance + recoveredEndurance);
+        System.out.printf(
             "The saloon cost you $%d and restored %d%% endurance. Endurance: %d%%, money: $%d.%n",
             cost,
             recoveredEndurance,
@@ -176,6 +210,16 @@ public class FortyNiner {
             }
         }
         return null;
+    }
+
+    private int countWorkingCradles() {
+        int workingCradles = 0;
+        for (Tool tool : tools) {
+            if (tool instanceof Cradle && tool.getDurability() > 0) {
+                workingCradles++;
+            }
+        }
+        return workingCradles;
     }
 
     private int readNumberInRange(Scanner scanner, int min, int max) {

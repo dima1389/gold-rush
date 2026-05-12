@@ -18,6 +18,8 @@ public class GoldRush {
             System.out.printf("%n========== Week %d ==========%n", currentWeek);
             System.out.println("\n--- Sunday ---");
             fortyNiner.itIsSundayAgain(scanner);
+            System.out.println("\n--- Cradle Purchase ---");
+            fortyNiner.buyCradles(scanner);
             System.out.println("\n--- Mining ---");
             fortyNiner.useTools();
             System.out.println("\n--- Expenses & Losses ---");
