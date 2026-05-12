@@ -12,4 +12,10 @@ public class GoldRush {
         fortyNiner = new FortyNiner();
         currentWeek = 1;
     }
+
+    public void loadGame() {
+    }
+
+    private void saveGame() {
+    }
 }
