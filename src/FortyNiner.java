@@ -8,6 +8,10 @@ public class FortyNiner {
     private ArrayList<Tool> tools;
     private Random rnd;
 
+    public FortyNiner() {
+        this(100, 100, createStartingTools());
+    }
+
     public FortyNiner(int endurance, int money, ArrayList<Tool> tools) {
         this.endurance = endurance;
         this.money = money;
@@ -134,5 +138,13 @@ public class FortyNiner {
             }
         }
         return null;
+    }
+
+    private static ArrayList<Tool> createStartingTools() {
+        ArrayList<Tool> startingTools = new ArrayList<>();
+        startingTools.add(new Pan());
+        startingTools.add(new Sluice());
+        startingTools.add(new Cradle());
+        return startingTools;
     }
 }
