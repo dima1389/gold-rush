@@ -54,6 +54,11 @@ public class FortyNiner {
     }
 
     public int useTools() {
+        if (endurance == 0) {
+            System.out.printf("Endurance is at 0%%. No mining income this week. Money stays at $%d.%n", money);
+            return 0;
+        }
+
         int weeklyIncome = 0;
         Iterator<Tool> iterator = tools.iterator();
         while (iterator.hasNext()) {
