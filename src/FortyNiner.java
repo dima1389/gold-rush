@@ -82,4 +82,24 @@ public class FortyNiner {
         System.out.printf("You lost %d%% endurance. Current endurance: %d%%%n", enduranceLoss, endurance);
         return enduranceLoss;
     }
+
+    private boolean goToSaloon() {
+        int cost = rnd.nextInt(151) + 50;
+        int recoveredEndurance = rnd.nextInt(46) + 5;
+        if (money < cost) {
+            System.out.printf("You need $%d for the saloon, but only have $%d.%n", cost, money);
+            return false;
+        }
+
+        money -= cost;
+        endurance = Math.min(100, endurance + recoveredEndurance);
+        System.out.printf(
+            "The saloon cost you $%d and restored %d%% endurance. Endurance: %d%%, money: $%d.%n",
+            cost,
+            recoveredEndurance,
+            endurance,
+            money
+        );
+        return true;
+    }
 }
