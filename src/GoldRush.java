@@ -52,6 +52,12 @@ public class GoldRush {
     }
 
     public void loadGame() {
+        if (!savedGame.exists()) {
+            fortyNiner = null;
+            currentWeek = 1;
+            System.out.println("No saved game found. Starting a new game.");
+            return;
+        }
     }
 
     private boolean saveGame() {
