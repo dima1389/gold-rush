@@ -1,5 +1,7 @@
 public class Play {
     public static void main(String[] args) {
-        System.out.println("Gold Rush simulation started.");
+        GoldRush goldRush = new GoldRush();
+        goldRush.loadGame();
+        goldRush.survive();
     }
 }
