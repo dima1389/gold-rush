@@ -3,6 +3,10 @@ public class Sluice extends Tool {
         super(100);
     }
 
+    public Sluice(int durability) {
+        super(durability);
+    }
+
     @Override
     public int useTool() {
         if (getDurability() == 0) {

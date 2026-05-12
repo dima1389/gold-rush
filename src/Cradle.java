@@ -3,6 +3,10 @@ public class Cradle extends Tool {
         super(100);
     }
 
+    public Cradle(int durability) {
+        super(durability);
+    }
+
     @Override
     public int useTool() {
         if (getDurability() == 0) {
