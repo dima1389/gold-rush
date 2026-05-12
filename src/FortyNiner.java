@@ -102,4 +102,37 @@ public class FortyNiner {
         );
         return true;
     }
+
+    private boolean fixSluice() {
+        Sluice sluice = findSluice();
+        if (sluice == null) {
+            System.out.println("You do not own a sluice to repair.");
+            return false;
+        }
+        if (sluice.getDurability() > 0) {
+            System.out.printf(
+                "Your sluice is still usable at %d%% durability. No repair was needed.%n",
+                sluice.getDurability()
+            );
+            return false;
+        }
+        if (money < 100) {
+            System.out.printf("Repair costs $100, but you only have $%d.%n", money);
+            return false;
+        }
+
+        money -= 100;
+        sluice.repair();
+        System.out.printf("You paid $100 for repairs. Money left: $%d.%n", money);
+        return true;
+    }
+
+    private Sluice findSluice() {
+        for (Tool tool : tools) {
+            if (tool instanceof Sluice) {
+                return (Sluice) tool;
+            }
+        }
+        return null;
+    }
 }
