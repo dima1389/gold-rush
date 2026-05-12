@@ -14,10 +14,11 @@ public class GoldRush {
 
         while (currentWeek <= 20) {
             System.out.printf("%n========== Week %d ==========%n", currentWeek);
-            System.out.println("Sunday");
-            System.out.println("Mining");
+            System.out.println("--- Sunday ---");
+            fortyNiner.itIsSundayAgain();
+            System.out.println("--- Mining ---");
             fortyNiner.useTools();
-            System.out.println("Expenses & Losses");
+            System.out.println("--- Expenses & Losses ---");
             fortyNiner.buyFood();
             fortyNiner.loseEndurance();
             System.out.printf(

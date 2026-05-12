@@ -92,6 +92,15 @@ public class FortyNiner {
         return enduranceLoss;
     }
 
+    public void itIsSundayAgain() {
+        System.out.println("It's Sunday again!");
+        System.out.printf(
+            "Sunday status: endurance %d%%, money $%d%n",
+            endurance,
+            money
+        );
+    }
+
     private boolean goToSaloon() {
         int cost = rnd.nextInt(151) + 50;
         int recoveredEndurance = rnd.nextInt(46) + 5;
@@ -101,8 +110,8 @@ public class FortyNiner {
         }
 
         money -= cost;
-        endurance = Math.min(100, endurance + recoveredEndurance);
-        System.out.printf(
+                endurance = Math.min(100, endurance + recoveredEndurance);
+                System.out.printf(
             "The saloon cost you $%d and restored %d%% endurance. Endurance: %d%%, money: $%d.%n",
             cost,
             recoveredEndurance,
