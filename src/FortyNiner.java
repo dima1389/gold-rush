@@ -61,16 +61,22 @@ public class FortyNiner {
         }
 
         int weeklyIncome = 0;
+        int brokenCradles = 0;
         Iterator<Tool> iterator = tools.iterator();
         while (iterator.hasNext()) {
             Tool tool = iterator.next();
             weeklyIncome += tool.useTool();
             if (tool instanceof Cradle && tool.getDurability() == 0) {
                 iterator.remove();
+                brokenCradles++;
             }
         }
 
         money += weeklyIncome;
+        if (brokenCradles > 0) {
+            long workingCradles = tools.stream().filter(t -> t instanceof Cradle).count();
+            System.out.printf("%d broken cradle(s) were removed from your inventory. %d working cradle(s) remaining.%n", brokenCradles, workingCradles);
+        }
         System.out.printf("Weekly earnings total: $%d. You now have $%d.%n", weeklyIncome, money);
         return weeklyIncome;
     }
