@@ -168,11 +168,13 @@ public class FortyNiner {
         }
 
         money -= cost;
+        int before = endurance;
         endurance = Math.min(100, endurance + recoveredEndurance);
+        int actualRestored = endurance - before;
         System.out.printf(
             "The saloon cost you $%d and restored %d%% endurance. Endurance: %d%%, money: $%d.%n",
             cost,
-            recoveredEndurance,
+            actualRestored,
             endurance,
             money
         );
