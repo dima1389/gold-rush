@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.Scanner;
 
 public class GoldRush {
     private FortyNiner fortyNiner;
@@ -12,13 +13,15 @@ public class GoldRush {
         fortyNiner = new FortyNiner();
         currentWeek = 1;
 
+        Scanner scanner = new Scanner(System.in);
         while (currentWeek <= 20) {
             System.out.printf("%n========== Week %d ==========%n", currentWeek);
-            System.out.println("--- Sunday ---");
-            fortyNiner.itIsSundayAgain();
-            System.out.println("--- Mining ---");
+            System.out.println("\n--- Sunday ---");
+            fortyNiner.itIsSundayAgain(scanner);
+            System.out.println("\n--- Mining ---");
             fortyNiner.useTools();
-            System.out.println("--- Expenses & Losses ---");
+            System.out.println("\n--- Expenses & Losses ---");
+
             fortyNiner.buyFood();
             fortyNiner.loseEndurance();
             System.out.printf(

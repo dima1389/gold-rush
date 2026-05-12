@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.Scanner;
 
 public class FortyNiner {
     private int endurance;
@@ -92,13 +93,36 @@ public class FortyNiner {
         return enduranceLoss;
     }
 
-    public void itIsSundayAgain() {
-        System.out.println("It's Sunday again!");
+    public void itIsSundayAgain(Scanner scanner) {
+        Sluice sluice = findSluice();
+
         System.out.printf(
             "Sunday status: endurance %d%%, money $%d%n",
             endurance,
             money
         );
+        boolean actionTaken = false;
+        while (!actionTaken) {
+            System.out.println("Choose your Sunday action:");
+            System.out.println("1 - Do nothing");
+            System.out.println("2 - Repair a broken sluice for $100");
+            System.out.println("3 - Visit the saloon");
+
+            int choice = readNumberInRange(scanner, 1, 3);
+            if (choice == 1) {
+                System.out.println("You stayed put and saved your money.");
+                actionTaken = true;
+            } else if (choice == 2) {
+                boolean sluiceUsable = sluice != null && sluice.getDurability() > 0;
+                fixSluice();
+                if (!sluiceUsable) {
+                    actionTaken = true;
+                }
+            } else {
+                goToSaloon();
+                actionTaken = true;
+            }
+        }
     }
 
     private boolean goToSaloon() {
@@ -152,6 +176,21 @@ public class FortyNiner {
             }
         }
         return null;
+    }
+
+    private int readNumberInRange(Scanner scanner, int min, int max) {
+        while (true) {
+            String input = scanner.nextLine().trim();
+            try {
+                int value = Integer.parseInt(input);
+                if (value >= min && value <= max) {
+                    return value;
+                }
+            } catch (NumberFormatException ignored) {
+                // Keep prompting below.
+            }
+            System.out.printf("Enter a whole number between %d and %d.%n", min, max);
+        }
     }
 
     private static ArrayList<Tool> createStartingTools() {
