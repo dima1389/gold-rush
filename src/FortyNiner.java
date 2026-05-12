@@ -84,7 +84,7 @@ public class FortyNiner {
 
     public int loseEndurance() {
         if (endurance == 0) {
-            System.out.println("Your endurance is still 0%.");
+            System.out.println("Your endurance is still 0%. Visit the saloon to recover it.");
             return 0;
         }
         int enduranceLoss = rnd.nextInt(16) + 10;
@@ -95,11 +95,15 @@ public class FortyNiner {
 
     public void itIsSundayAgain(Scanner scanner) {
         Sluice sluice = findSluice();
+        int sluiceDurability = sluice == null ? 0 : sluice.getDurability();
+        int workingCradles = countWorkingCradles();
 
         System.out.printf(
-            "Sunday status: endurance %d%%, money $%d%n",
+            "Sunday status: endurance %d%%, money $%d, sluice durability %d%%, working cradles %d%n",
             endurance,
-            money
+            money,
+            sluiceDurability,
+            workingCradles
         );
         boolean actionTaken = false;
         while (!actionTaken) {
@@ -163,7 +167,7 @@ public class FortyNiner {
         int cost = rnd.nextInt(151) + 50;
         int recoveredEndurance = rnd.nextInt(46) + 5;
         if (money < cost) {
-            System.out.printf("You need $%d for the saloon, but only have $%d.%n", cost, money);
+            System.out.printf("You need $%d for the saloon, but only have $%d. You stay home instead.%n", cost, money);
             return false;
         }
 
